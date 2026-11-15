@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DietMemory</title>
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#247a4b">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="kontener">
+
+    <header class="naglowek">
+        <h1>🥗 DietMemory</h1>
+        <p>Dieta Gerarda i Beaty</p>
+    </header>
+
+
+    <!-- EKRAN START -->
+
+    <main id="ekran-start">
+
+        <section class="sekcja">
+
+            <h2>Dzisiejszy plan</h2>
+
+            <div class="osoby">
+
+                <div class="osoba">
+                    <h3>Gerard</h3>
+                    <div class="kalorie">0 / 2000 kcal</div>
+                </div>
+
+                <div class="osoba">
+                    <h3>Beata</h3>
+                    <div class="kalorie">0 / 1500 kcal</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="sekcja">
+
+            <h2>Menu główne</h2>
+
+            <div class="menu">
+
+                <button type="button">
+                    📅 Plan diety
+                </button>
+
+                <button type="button">
+                    🍽️ Posiłki
+                </button>
+
+                <button id="przycisk-produkty" type="button">
+                    🥕 Produkty
+                </button>
+
+                <button type="button">
+                    🛒 Lista zakupów
+                </button>
+
+                <button type="button">
+                    💰 Historia cen
+                </button>
+
+                <button type="button">
+                    ⚙️ Ustawienia
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- EKRAN PRODUKTY -->
+
+    <main id="ekran-produkty" class="ukryty">
+
+        <section class="sekcja">
+
+            <button
+                id="przycisk-powrot"
+                class="przycisk-powrot"
+                type="button">
+
+                ← Powrót do Start
+
+            </button>
+
+            <h2>🥕 Baza produktów</h2>
+
+            <p class="opis">
+                Zacznij wpisywać nazwę. Program od razu sprawdzi,
+                czy podobny produkt znajduje się już w bazie.
+            </p>
+
+
+            <form id="formularz-produktu">
+
+                <div class="formularz-grid">
+
+                    <div class="pole pole-nazwa">
+
+                        <label for="nazwa">
+                            Nazwa produktu *
+                        </label>
+
+                        <input
+                            id="nazwa"
+                            type="text"
+                            autocomplete="off"
+                            placeholder="np. Skyr naturalny"
+                            required>
+
+                        <div
+                            id="podpowiedzi"
+                            class="podpowiedzi ukryty">
+                        </div>
+
+                    </div>
+
+
+                    <div class="pole">
+
+                        <label for="producent">
+                            Producent
+                        </label>
+
+                        <input
+                            id="producent"
+                            type="text"
+                            autocomplete="off"
+                            placeholder="np. Pilos">
+
+                    </div>
+
+
+                    <div class="pole">
+
+                        <label for="ean">
+                            Kod EAN
+                        </label>
+
+                        <input
+                            id="ean"
+                            type="text"
+                            inputmode="numeric"
+                            autocomplete="off"
+                            placeholder="np. 5901234567890">
+
+                        <div
+                            id="komunikat-ean"
+                            class="komunikat-ean">
+                        </div>
+
+                    </div>
+
+
+                    <div class="pole">
+
+                        <label for="opakowanie">
+                            Opakowanie [g]
+                        </label>
+
+                        <input
+                            id="opakowanie"
+                            type="number"
+                            min="0"
+                            step="0.1"
+                            placeholder="np. 150">
+
+                    </div>
+
+
+                    <div class="pole">
+
+                        <label for="kcal">
+                            kcal / 100 g
+                        </label>
+
+                        <input
+                            id="kcal"
+                            type="number"
+                            min="0"
+                            step="0.1"
+                            placeholder="np. 64">
+
+                    </div>
+
+
+                    <div class="pole">
+
+                        <label for="bialko">
+                            Białko / 100 g
+                        </label>
+
+                        <input
+                            id="bialko"
+                            type="number"
+                            min="0"
+                            step="0.1"
+                            placeholder="np. 11">
+
+                    </div>
+
+
+                    <div class="pole">
+
+                        <label for="tluszcz">
+                            Tłuszcz / 100 g
+                        </label>
+
+                        <input
+                            id="tluszcz"
+                            type="number"
+                            min="0"
+                            step="0.1"
+                            placeholder="np. 0.2">
+
+                    </div>
+
+
+                    <div class="pole">
+
+                        <label for="weglowodany">
+                            Węglowodany / 100 g
+                        </label>
+
+                        <input
+                            id="weglowodany"
+                            type="number"
+                            min="0"
+                            step="0.1"
+                            placeholder="np. 4">
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="przycisk-glowny"
+                    type="submit">
+
+                    + Dodaj produkt
+
+                </button>
+
+
+                <p id="komunikat"></p>
+
+            </form>
+
+        </section>
+
+
+        <section class="sekcja">
+
+            <div class="naglowek-bazy">
+
+                <div>
+                    <h2>Zapisane produkty</h2>
+
+                    <p id="liczba-produktow">
+                        0 produktów
+                    </p>
+                </div>
+
+                <div class="wyszukiwarka">
+
+                    <label for="szukaj">
+                        🔎 Szukaj
+                    </label>
+
+                    <input
+                        id="szukaj"
+                        type="search"
+                        autocomplete="off"
+                        placeholder="Nazwa, producent lub EAN">
+
+                </div>
+
+            </div>
+
+
+            <div class="tabela-kontener">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Nazwa</th>
+                            <th>Producent</th>
+                            <th>EAN</th>
+                            <th>Opakowanie</th>
+                            <th>kcal</th>
+                            <th>B</th>
+                            <th>T</th>
+                            <th>W</th>
+                            <th>Akcja</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="lista-produktow">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <p
+                id="brak-produktow"
+                class="brak-produktow">
+
+                Nie dodano jeszcze produktów.
+
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer class="stopka">
+        DietMemory
+    </footer>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+
+</html>

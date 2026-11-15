@@ -1,0 +1,317 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f5;
+    color: #26332d;
+}
+
+.kontener {
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.naglowek {
+    background-color: #247a4b;
+    color: white;
+    padding: 24px;
+    border-radius: 14px;
+    margin-bottom: 24px;
+}
+
+.naglowek h1 {
+    margin: 0 0 8px 0;
+}
+
+.naglowek p {
+    margin: 0;
+}
+
+.sekcja {
+    background-color: white;
+    padding: 24px;
+    border-radius: 14px;
+    margin-bottom: 24px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.sekcja h2 {
+    margin-top: 0;
+}
+
+.opis {
+    color: #607068;
+}
+
+.osoby {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.osoba {
+    background-color: #edf7f1;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid #247a4b;
+}
+
+.osoba h3 {
+    margin-top: 0;
+}
+
+.kalorie {
+    color: #247a4b;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.menu button {
+    border: none;
+    border-radius: 10px;
+    padding: 18px 12px;
+    background-color: #247a4b;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.menu button:hover {
+    background-color: #195c37;
+}
+
+.przycisk-powrot {
+    border: none;
+    border-radius: 8px;
+    padding: 11px 16px;
+    background-color: #e3eee8;
+    color: #195c37;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.formularz-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 24px;
+    margin-bottom: 22px;
+}
+
+.pole {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.pole label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.pole input,
+.wyszukiwarka input {
+    width: 100%;
+    border: 1px solid #c8d5cd;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    background-color: white;
+}
+
+.pole input:focus,
+.wyszukiwarka input:focus {
+    outline: 2px solid #91ceb0;
+    border-color: #247a4b;
+}
+
+.przycisk-glowny {
+    border: none;
+    border-radius: 9px;
+    padding: 14px 22px;
+    background-color: #247a4b;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.przycisk-glowny:hover {
+    background-color: #195c37;
+}
+
+#komunikat {
+    min-height: 22px;
+    font-weight: bold;
+    color: #247a4b;
+}
+
+.komunikat-ean {
+    min-height: 18px;
+    color: #b24232;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.podpowiedzi {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-color: white;
+    border: 1px solid #c8d5cd;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    max-height: 270px;
+    overflow-y: auto;
+}
+
+.podpowiedz {
+    padding: 12px;
+    border-bottom: 1px solid #e7ece9;
+    cursor: pointer;
+}
+
+.podpowiedz:last-child {
+    border-bottom: none;
+}
+
+.podpowiedz:hover {
+    background-color: #edf7f1;
+}
+
+.podpowiedz-nazwa {
+    color: #195c37;
+    font-weight: bold;
+}
+
+.podpowiedz-info {
+    margin-top: 4px;
+    color: #6b766f;
+    font-size: 13px;
+}
+
+.naglowek-bazy {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.naglowek-bazy h2 {
+    margin-bottom: 5px;
+}
+
+#liczba-produktow {
+    margin: 0;
+    color: #718078;
+}
+
+.wyszukiwarka {
+    width: 360px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.wyszukiwarka label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.tabela-kontener {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #edf7f1;
+    color: #195c37;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 11px 9px;
+    border-bottom: 1px solid #e1e8e4;
+    white-space: nowrap;
+}
+
+.przycisk-usun {
+    border: none;
+    border-radius: 7px;
+    padding: 8px 11px;
+    background-color: #fbe5e5;
+    color: #a42e2e;
+    cursor: pointer;
+}
+
+.przycisk-usun:hover {
+    background-color: #f5cccc;
+}
+
+.brak-produktow {
+    text-align: center;
+    color: #718078;
+    padding: 22px;
+}
+
+.ukryty {
+    display: none !important;
+}
+
+.stopka {
+    text-align: center;
+    color: #718078;
+    font-size: 14px;
+    padding: 8px;
+}
+
+@media (max-width: 700px) {
+
+    .kontener {
+        padding: 12px;
+    }
+
+    .osoby {
+        grid-template-columns: 1fr;
+    }
+
+    .menu {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .formularz-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .naglowek-bazy {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .wyszukiwarka {
+        width: 100%;
+    }
+}
