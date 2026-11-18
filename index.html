@@ -3,347 +3,768 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>DietMemory</title>
-    <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#247a4b">
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="manifest"
+        href="manifest.json">
+
+    <meta
+        name="theme-color"
+        content="#247a4b">
+
+    <link
+        rel="stylesheet"
+        href="style.css">
 </head>
 
 <body>
 
-<div class="kontener">
+    <!-- EKRAN LOGOWANIA -->
 
-    <header class="naglowek">
-        <h1>🥗 DietMemory</h1>
-        <p>Dieta Gerarda i Beaty</p>
-    </header>
+    <div
+        id="ekran-logowania"
+        class="wrap">
+
+        <header>
+            <h1>🥗 DietMemory</h1>
+
+            <p>
+                Wspólna dieta Gerarda i Beaty
+            </p>
+        </header>
+
+        <main>
+
+            <section>
+
+                <h2>Zaloguj się</h2>
+
+                <p>
+                    Zaloguj się swoim kontem DietMemory,
+                    aby korzystać ze wspólnej bazy danych.
+                </p>
+
+                <form
+                    id="formularz-logowania"
+                    class="grid">
+
+                    <label>
+                        Adres e-mail
+
+                        <input
+                            id="login-email"
+                            type="email"
+                            autocomplete="email"
+                            placeholder="Wpisz adres e-mail"
+                            required>
+                    </label>
+
+                    <label>
+                        Hasło
+
+                        <input
+                            id="login-haslo"
+                            type="password"
+                            autocomplete="current-password"
+                            placeholder="Wpisz hasło"
+                            required>
+                    </label>
+
+                    <button
+                        class="primary"
+                        type="submit">
+
+                        Zaloguj się
+
+                    </button>
+
+                </form>
+
+                <p
+                    id="login-komunikat"
+                    aria-live="polite">
+                </p>
+
+            </section>
+
+        </main>
+
+    </div>
 
 
-    <!-- EKRAN START -->
+    <!-- WŁAŚCIWA APLIKACJA -->
 
-    <main id="ekran-start">
+    <div
+        id="aplikacja-dietmemory"
+        class="wrap hide">
 
-        <section class="sekcja">
+        <header>
 
-            <h2>Dzisiejszy plan</h2>
+            <div class="title">
 
-            <div class="osoby">
+                <div>
 
-                <div class="osoba">
-                    <h3>Gerard</h3>
-                    <div class="kalorie">0 / 2000 kcal</div>
+                    <h1>🥗 DietMemory</h1>
+
+                    <p>
+                        Dieta Gerarda i Beaty
+                    </p>
+
                 </div>
 
-                <div class="osoba">
-                    <h3>Beata</h3>
-                    <div class="kalorie">0 / 1500 kcal</div>
+                <div>
+
+                    <p>
+                        Zalogowano:
+                        <strong id="zalogowany-email">
+                            użytkownik
+                        </strong>
+                    </p>
+
+                    <button
+                        id="przycisk-wyloguj"
+                        type="button">
+
+                        Wyloguj
+
+                    </button>
+
                 </div>
 
             </div>
 
-        </section>
+        </header>
 
 
-        <section class="sekcja">
+        <!-- EKRAN START -->
 
-            <h2>Menu główne</h2>
+        <main id="start">
 
-            <div class="menu">
+            <section>
 
-                <button type="button">
-                    📅 Plan diety
+                <h2>Menu główne</h2>
+
+                <div class="menu">
+
+                    <button
+                        type="button"
+                        data-go="dziennik">
+
+                        📖 Dziennik
+
+                    </button>
+
+                    <button
+                        type="button"
+                        data-go="posilki">
+
+                        🍽️ Posiłki
+
+                    </button>
+
+                    <button
+                        type="button"
+                        data-go="produkty">
+
+                        🥕 Produkty
+
+                    </button>
+
+                    <button type="button">
+                        📅 Plan diety
+                    </button>
+
+                    <button type="button">
+                        🛒 Lista zakupów
+                    </button>
+
+                    <button type="button">
+                        💰 Historia cen
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- EKRAN PRODUKTY -->
+
+        <main
+            id="produkty"
+            class="hide">
+
+            <section>
+
+                <button
+                    class="back"
+                    type="button">
+
+                    ← Start
+
                 </button>
 
-                <button type="button">
-                    🍽️ Posiłki
+                <h2>🥕 Produkty</h2>
+
+                <form
+                    id="productForm"
+                    class="grid">
+
+                    <label>
+                        Nazwa produktu *
+
+                        <input
+                            id="pn"
+                            type="text"
+                            autocomplete="off"
+                            required>
+                    </label>
+
+                    <label>
+                        Producent
+
+                        <input
+                            id="pp"
+                            type="text"
+                            autocomplete="off">
+                    </label>
+
+                    <label>
+                        EAN
+
+                        <input
+                            id="pe"
+                            type="text"
+                            inputmode="numeric"
+                            autocomplete="off">
+                    </label>
+
+                    <label>
+                        Opakowanie [g]
+
+                        <input
+                            id="po"
+                            type="number"
+                            step="0.1"
+                            min="0">
+                    </label>
+
+                    <label>
+                        kcal / 100 g
+
+                        <input
+                            id="pk"
+                            type="number"
+                            step="0.1"
+                            min="0">
+                    </label>
+
+                    <label>
+                        Białko / 100 g
+
+                        <input
+                            id="pb"
+                            type="number"
+                            step="0.1"
+                            min="0">
+                    </label>
+
+                    <label>
+                        Tłuszcz / 100 g
+
+                        <input
+                            id="pt"
+                            type="number"
+                            step="0.1"
+                            min="0">
+                    </label>
+
+                    <label>
+                        Węglowodany / 100 g
+
+                        <input
+                            id="pw"
+                            type="number"
+                            step="0.1"
+                            min="0">
+                    </label>
+
+                    <button
+                        class="primary"
+                        type="submit">
+
+                        + Dodaj produkt
+
+                    </button>
+
+                </form>
+
+                <p
+                    id="pmsg"
+                    aria-live="polite">
+                </p>
+
+            </section>
+
+
+            <section>
+
+                <input
+                    id="psearch"
+                    type="search"
+                    autocomplete="off"
+                    placeholder="🔎 Szukaj produktu">
+
+                <div id="plist">
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- EKRAN POSIŁKI -->
+
+        <main
+            id="posilki"
+            class="hide">
+
+            <section>
+
+                <button
+                    class="back"
+                    type="button">
+
+                    ← Start
+
                 </button>
 
-                <button id="przycisk-produkty" type="button">
-                    🥕 Produkty
+                <div class="title">
+
+                    <div>
+
+                        <h2>🍽️ Posiłki</h2>
+
+                        <p>
+                            Przepisy z automatycznym
+                            przeliczeniem kalorii i BTW.
+                        </p>
+
+                    </div>
+
+                    <button
+                        id="newMeal"
+                        class="primary"
+                        type="button">
+
+                        + Nowy przepis
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- EDYTOR POSIŁKU -->
+
+            <section
+                id="mealEditor"
+                class="hide">
+
+                <h2 id="mealEditorTitle">
+                    Nowy przepis
+                </h2>
+
+                <div class="grid">
+
+                    <label>
+                        Nazwa przepisu *
+
+                        <input
+                            id="mn"
+                            type="text"
+                            autocomplete="off">
+                    </label>
+
+                    <label>
+                        Liczba porcji *
+
+                        <input
+                            id="mserv"
+                            type="number"
+                            min="0.01"
+                            step="0.01"
+                            value="1.00">
+                    </label>
+
+                    <label>
+                        Czas przygotowania [min]
+
+                        <input
+                            id="mprep"
+                            type="number"
+                            min="0">
+                    </label>
+
+                    <label>
+                        Czas gotowania [min]
+
+                        <input
+                            id="mcook"
+                            type="number"
+                            min="0">
+                    </label>
+
+                    <label>
+                        Kategoria
+
+                        <select id="mcat">
+
+                            <option>Śniadanie</option>
+                            <option>II Śniadanie</option>
+                            <option>Obiad</option>
+                            <option>Podwieczorek</option>
+                            <option>Kolacja</option>
+                            <option>Inne</option>
+
+                        </select>
+                    </label>
+
+                    <label>
+                        Ocena
+
+                        <select id="mrating">
+
+                            <option value="0">
+                                Brak
+                            </option>
+
+                            <option value="1">
+                                ★☆☆☆☆
+                            </option>
+
+                            <option value="2">
+                                ★★☆☆☆
+                            </option>
+
+                            <option value="3">
+                                ★★★☆☆
+                            </option>
+
+                            <option value="4">
+                                ★★★★☆
+                            </option>
+
+                            <option value="5">
+                                ★★★★★
+                            </option>
+
+                        </select>
+                    </label>
+
+                    <label>
+                        Masa gotowego dania [g]
+
+                        <input
+                            id="mweight"
+                            type="number"
+                            min="0"
+                            step="0.1">
+                    </label>
+
+                </div>
+
+
+                <h3>Składniki</h3>
+
+                <div class="ingredientAdd">
+
+                    <input
+                        id="isearch"
+                        type="search"
+                        autocomplete="off"
+                        placeholder="Wyszukaj produkt">
+
+                    <input
+                        id="iamount"
+                        type="number"
+                        min="0.1"
+                        step="0.1"
+                        placeholder="Ilość g">
+
+                    <button
+                        id="iadd"
+                        type="button">
+
+                        Dodaj składnik
+
+                    </button>
+
+                    <div id="isuggest">
+                    </div>
+
+                </div>
+
+                <div id="ingredients">
+                </div>
+
+                <div
+                    id="mealTotals"
+                    class="totals">
+                </div>
+
+
+                <label>
+                    Instrukcje krok po kroku
+
+                    <textarea
+                        id="minstr"
+                        rows="7"
+                        placeholder="Każdy krok wpisz w osobnej linii"></textarea>
+                </label>
+
+
+                <div class="actions">
+
+                    <button
+                        id="cancelMeal"
+                        type="button">
+
+                        Anuluj
+
+                    </button>
+
+                    <button
+                        id="saveMeal"
+                        class="primary"
+                        type="button">
+
+                        Zapisz przepis
+
+                    </button>
+
+                </div>
+
+                <p
+                    id="mmsg"
+                    aria-live="polite">
+                </p>
+
+            </section>
+
+
+            <!-- LISTA POSIŁKÓW -->
+
+            <section>
+
+                <input
+                    id="msearch"
+                    type="search"
+                    autocomplete="off"
+                    placeholder="🔎 Szukaj posiłku">
+
+                <div id="mealList">
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- EKRAN DZIENNIK -->
+
+        <main
+            id="dziennik"
+            class="hide">
+
+            <section>
+
+                <button
+                    class="back"
+                    type="button">
+
+                    ← Start
+
                 </button>
 
-                <button type="button">
-                    🛒 Lista zakupów
-                </button>
+                <div class="title">
 
-                <button type="button">
-                    💰 Historia cen
-                </button>
+                    <div>
+                        <h2>📖 Dziennik</h2>
+                    </div>
 
-                <button type="button">
-                    ⚙️ Ustawienia
-                </button>
+                    <div class="journalSettings">
 
+                        <select id="jperson">
+
+                            <option>Gerard</option>
+                            <option>Beata</option>
+
+                        </select>
+
+                        <input
+                            id="jdate"
+                            type="date">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <section class="summary">
+
+                <b id="jk">
+                    0 kcal
+                </b>
+
+                <b id="jb">
+                    B 0 g
+                </b>
+
+                <b id="jt">
+                    T 0 g
+                </b>
+
+                <b id="jw">
+                    W 0 g
+                </b>
+
+            </section>
+
+
+            <div id="journalMeals">
             </div>
 
-        </section>
-
-    </main>
+        </main>
 
 
-    <!-- EKRAN PRODUKTY -->
+        <footer>
+            DietMemory
+        </footer>
 
-    <main id="ekran-produkty" class="ukryty">
+    </div>
 
-        <section class="sekcja">
+
+    <!-- OKNO DODAWANIA DO DZIENNIKA -->
+
+    <div
+        id="journalModal"
+        class="modal hide">
+
+        <div class="card">
 
             <button
-                id="przycisk-powrot"
-                class="przycisk-powrot"
+                id="jclose"
+                class="x"
                 type="button">
 
-                ← Powrót do Start
+                ×
 
             </button>
 
-            <h2>🥕 Baza produktów</h2>
-
-            <p class="opis">
-                Zacznij wpisywać nazwę. Program od razu sprawdzi,
-                czy podobny produkt znajduje się już w bazie.
-            </p>
+            <h2>
+                Dodaj do
+                <span id="jmealName"></span>
+            </h2>
 
 
-            <form id="formularz-produktu">
-
-                <div class="formularz-grid">
-
-                    <div class="pole pole-nazwa">
-
-                        <label for="nazwa">
-                            Nazwa produktu *
-                        </label>
-
-                        <input
-                            id="nazwa"
-                            type="text"
-                            autocomplete="off"
-                            placeholder="np. Skyr naturalny"
-                            required>
-
-                        <div
-                            id="podpowiedzi"
-                            class="podpowiedzi ukryty">
-                        </div>
-
-                    </div>
-
-
-                    <div class="pole">
-
-                        <label for="producent">
-                            Producent
-                        </label>
-
-                        <input
-                            id="producent"
-                            type="text"
-                            autocomplete="off"
-                            placeholder="np. Pilos">
-
-                    </div>
-
-
-                    <div class="pole">
-
-                        <label for="ean">
-                            Kod EAN
-                        </label>
-
-                        <input
-                            id="ean"
-                            type="text"
-                            inputmode="numeric"
-                            autocomplete="off"
-                            placeholder="np. 5901234567890">
-
-                        <div
-                            id="komunikat-ean"
-                            class="komunikat-ean">
-                        </div>
-
-                    </div>
-
-
-                    <div class="pole">
-
-                        <label for="opakowanie">
-                            Opakowanie [g]
-                        </label>
-
-                        <input
-                            id="opakowanie"
-                            type="number"
-                            min="0"
-                            step="0.1"
-                            placeholder="np. 150">
-
-                    </div>
-
-
-                    <div class="pole">
-
-                        <label for="kcal">
-                            kcal / 100 g
-                        </label>
-
-                        <input
-                            id="kcal"
-                            type="number"
-                            min="0"
-                            step="0.1"
-                            placeholder="np. 64">
-
-                    </div>
-
-
-                    <div class="pole">
-
-                        <label for="bialko">
-                            Białko / 100 g
-                        </label>
-
-                        <input
-                            id="bialko"
-                            type="number"
-                            min="0"
-                            step="0.1"
-                            placeholder="np. 11">
-
-                    </div>
-
-
-                    <div class="pole">
-
-                        <label for="tluszcz">
-                            Tłuszcz / 100 g
-                        </label>
-
-                        <input
-                            id="tluszcz"
-                            type="number"
-                            min="0"
-                            step="0.1"
-                            placeholder="np. 0.2">
-
-                    </div>
-
-
-                    <div class="pole">
-
-                        <label for="weglowodany">
-                            Węglowodany / 100 g
-                        </label>
-
-                        <input
-                            id="weglowodany"
-                            type="number"
-                            min="0"
-                            step="0.1"
-                            placeholder="np. 4">
-
-                    </div>
-
-                </div>
-
+            <div class="tabs">
 
                 <button
-                    class="przycisk-glowny"
-                    type="submit">
+                    id="tabProduct"
+                    class="active"
+                    type="button">
 
-                    + Dodaj produkt
+                    🥕 Produkt
 
                 </button>
 
+                <button
+                    id="tabMeal"
+                    type="button">
 
-                <p id="komunikat"></p>
+                    🍽️ Posiłek
 
-            </form>
-
-        </section>
-
-
-        <section class="sekcja">
-
-            <div class="naglowek-bazy">
-
-                <div>
-                    <h2>Zapisane produkty</h2>
-
-                    <p id="liczba-produktow">
-                        0 produktów
-                    </p>
-                </div>
-
-                <div class="wyszukiwarka">
-
-                    <label for="szukaj">
-                        🔎 Szukaj
-                    </label>
-
-                    <input
-                        id="szukaj"
-                        type="search"
-                        autocomplete="off"
-                        placeholder="Nazwa, producent lub EAN">
-
-                </div>
+                </button>
 
             </div>
 
 
-            <div class="tabela-kontener">
+            <input
+                id="jsearch"
+                type="search"
+                autocomplete="off"
+                placeholder="Wyszukaj">
 
-                <table>
 
-                    <thead>
-
-                        <tr>
-                            <th>Nazwa</th>
-                            <th>Producent</th>
-                            <th>EAN</th>
-                            <th>Opakowanie</th>
-                            <th>kcal</th>
-                            <th>B</th>
-                            <th>T</th>
-                            <th>W</th>
-                            <th>Akcja</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody id="lista-produktow">
-                    </tbody>
-
-                </table>
-
+            <div id="jresults">
             </div>
+
+
+            <div
+                id="jchosen"
+                class="chosen hide">
+            </div>
+
+
+            <label id="jamountLabel">
+
+                Ilość [g]
+
+                <input
+                    id="jamount"
+                    type="number"
+                    min="0.01"
+                    step="0.01">
+
+            </label>
+
+
+            <div
+                id="jpreview"
+                class="totals">
+            </div>
+
+
+            <button
+                id="jadd"
+                class="primary"
+                type="button">
+
+                Dodaj do dziennika
+
+            </button>
 
 
             <p
-                id="brak-produktow"
-                class="brak-produktow">
-
-                Nie dodano jeszcze produktów.
-
+                id="jmsg"
+                aria-live="polite">
             </p>
 
-        </section>
+        </div>
 
-    </main>
-
-
-    <footer class="stopka">
-        DietMemory
-    </footer>
-
-</div>
+    </div>
 
 
-<script src="app.js"></script>
+    <!-- SKRYPTY -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="supabase-config.js"></script>
+
+    <script src="auth.js"></script>
+
+    <script src="app.js"></script>
 
 </body>
 
