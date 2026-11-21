@@ -36,3 +36,6 @@ header .title{display:flex;justify-content:space-between;align-items:center;gap:
 
 /* v9.7 - skaner EAN i Open Food Facts */
 .eanTools{display:grid;grid-template-columns:1fr auto;gap:8px}.eanTools button{white-space:nowrap}.scannerCard{width:min(620px,100%)}.scannerVideo{display:block;width:100%;max-height:55vh;background:#111;border-radius:12px;object-fit:cover}.offCard{width:min(760px,100%)}#offResults{max-height:65vh;overflow:auto}.offResult{display:grid;grid-template-columns:72px 1fr auto;gap:12px;align-items:center;padding:12px 4px;border-bottom:1px solid #dfe7e2}.offResult img{width:72px;height:72px;object-fit:contain;background:#f5f7f6;border-radius:8px}.offResult small{display:block;color:#617168;margin-top:4px;line-height:1.35}@media(max-width:600px){.eanTools{grid-template-columns:1fr}.offResult{grid-template-columns:56px 1fr}.offResult img{width:56px;height:56px}.offResult button{grid-column:1/-1}}
+
+/* v9.8: skaner w oknie Dodaj pozycję w Dzienniku */
+#tabScan{white-space:nowrap}
