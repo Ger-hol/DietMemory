@@ -1,0 +1,1 @@
+DietMemory v9.6. Usunięto II Śniadanie z kategorii/układu dnia w Dzienniku i Planie oraz z podziału kalorii w Celach. Nowy domyślny podział: Śniadanie 30%, Obiad 40%, Podwieczorek 10%, Kolacja 20%. Pozostałych funkcji nie zmieniano.

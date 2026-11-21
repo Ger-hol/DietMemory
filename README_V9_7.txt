@@ -1,0 +1,1 @@
+DietMemory v9.7 na bazie v9.6. Dodano wyłącznie: skaner EAN z kamery oraz pobieranie/wyszukiwanie produktów w Open Food Facts z kontrolą danych przed zapisem. Jeśli EAN istnieje w Supabase, produkt otwiera się do edycji. Bez nowego SQL. Kamera wymaga HTTPS i zgody użytkownika.
