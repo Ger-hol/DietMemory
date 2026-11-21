@@ -39,3 +39,8 @@ header .title{display:flex;justify-content:space-between;align-items:center;gap:
 
 /* v9.8: skaner w oknie Dodaj pozycję w Dzienniku */
 #tabScan{white-space:nowrap}
+
+/* v9.8.3 - skaner zawsze nad oknem Dziennika */
+#journalModal{z-index:1000}
+#eanScannerModal{z-index:3000}
+#eanScannerModal .scannerCard{position:relative;z-index:3001}
