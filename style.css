@@ -50,6 +50,3 @@ header .title{display:flex;justify-content:space-between;align-items:center;gap:
 
 /* Historia cen i sklep na Liście zakupów */
 .shoppingRow{grid-template-columns:minmax(150px,1.5fr) repeat(7,minmax(85px,1fr))}.priceFilters{display:flex;gap:12px;flex-wrap:wrap;align-items:end}.priceFilters label{flex:1;min-width:160px}.priceHistoryItem{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid #dfe7e2}.priceHistoryItem small{display:block;color:#59675f;margin-top:5px}@media(max-width:1000px){.shoppingRow{grid-template-columns:1fr 1fr}.shoppingName{grid-column:1/-1}}@media(max-width:450px){.priceHistoryItem{flex-direction:column;gap:5px}}
-
-/* Odczyt etykiety, bez zmian pozostałych paneli */
-#labelOcrModal{z-index:4000}#labelOcrModal .actions{flex-wrap:wrap}#ocrRaw{white-space:pre-wrap;overflow-wrap:anywhere;max-height:180px;overflow:auto}#ocrNameCandidates button{display:block;text-align:left;width:100%;margin:5px 0}.ocrCheck{display:flex;flex-direction:row;align-items:flex-start;gap:10px;margin-top:16px}.ocrCheck input{width:auto;margin-top:4px}
