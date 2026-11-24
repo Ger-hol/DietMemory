@@ -1,0 +1,1 @@
+v9.11.2: standardowy kalkulator 0-9, przecinek, + - × ÷, = i Zastosuj; rozwijany w Dzienniku. Kopiuj automatycznie zamyka kartę. Usunięto wyłącznie drugi, niedziałający przycisk Historia cen. Brak nowego SQL. Pozostałe moduły bez zmian.
