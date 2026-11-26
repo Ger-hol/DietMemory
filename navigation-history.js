@@ -1,54 +1,27 @@
-/* v9.13: historia ekranów i okien dla przycisku Wstecz Androida/przeglądarki. */
-(function(){
-'use strict';
-const ids=['start','produkty','posilki','cele','plan','zakupy','dziennik','kalendarz','historia'];
-const modalIds=['eanScannerModal','offResultsModal','planDetailsModal','planModal','goalCalculatorModal','journalEntryCard','vesselModal','journalModal'];
-let applying=false,lastSignature='',ready=false;
-const el=id=>document.getElementById(id);
-function activeScreen(){return ids.find(id=>el(id)&&!el(id).classList.contains('hide'))||'start'}
-function openModals(){return modalIds.filter(id=>el(id)&&!el(id).classList.contains('hide'))}
-function snapshot(){return{
- dm:true,screen:activeScreen(),modals:openModals(),
- journal:{person:el('jperson')?.value||'',date:el('jdate')?.value||''},
- plan:{date:el('planDate')?.value||''},calendar:{month:el('dietMonth')?.value||''},
- shopping:{from:el('shoppingFrom')?.value||'',to:el('shoppingTo')?.value||''}
-}}
-function signature(s){return JSON.stringify(s)}
-function commit(replace=false){
- if(applying||!ready)return;
- const state=snapshot(),sig=signature(state);if(sig===lastSignature)return;
- lastSignature=sig;(replace?history.replaceState:history.pushState).call(history,state,'',location.href);
-}
-function restoreValues(s){
- if(s.journal){if(el('jperson')&&s.journal.person)el('jperson').value=s.journal.person;if(el('jdate')&&s.journal.date)el('jdate').value=s.journal.date}
- if(s.plan?.date&&el('planDate'))el('planDate').value=s.plan.date;
- if(s.calendar?.month&&el('dietMonth'))el('dietMonth').value=s.calendar.month;
- if(s.shopping){if(el('shoppingFrom')&&s.shopping.from)el('shoppingFrom').value=s.shopping.from;if(el('shoppingTo')&&s.shopping.to)el('shoppingTo').value=s.shopping.to}
-}
-function restore(s){
- if(!s?.dm)return;
- applying=true;
- try{
-  restoreValues(s);
-  ids.forEach(id=>el(id)?.classList.toggle('hide',id!==s.screen));
-  modalIds.forEach(id=>el(id)?.classList.toggle('hide',!(s.modals||[]).includes(id)));
-  if(!s.modals?.includes('eanScannerModal')&&typeof window.stopEanScanner==='function')window.stopEanScanner();
-  if(s.screen==='dziennik'&&typeof window.renderJournal==='function')window.renderJournal();
-  if(s.screen==='plan'&&typeof window.renderPlan==='function')window.renderPlan();
-  if(s.screen==='cele'&&typeof window.renderGoals==='function')window.renderGoals();
-  if(s.screen==='zakupy'&&typeof window.renderShopping==='function')window.renderShopping();
-  if(s.screen==='kalendarz'&&typeof window.renderDietCalendar==='function')window.renderDietCalendar();
-  lastSignature=signature(snapshot());
- }finally{setTimeout(()=>{applying=false},0)}
-}
-window.addEventListener('popstate',e=>restore(e.state||{dm:true,screen:'start',modals:[]}));
-const observer=new MutationObserver(records=>{
- if(applying||!ready)return;
- const opened=records.some(r=>r.target.classList?.contains('modal')&&!r.target.classList.contains('hide'));
- const screenChanged=records.some(r=>r.target.tagName==='MAIN');
- if(opened||screenChanged)setTimeout(()=>commit(false),0);
-});
-ids.concat(modalIds).forEach(id=>{const node=el(id);if(node)observer.observe(node,{attributes:true,attributeFilter:['class']})});
-['jperson','jdate','planDate','dietMonth','shoppingFrom','shoppingTo'].forEach(id=>el(id)?.addEventListener('change',()=>commit(true)));
-setTimeout(()=>{ready=true;const initial=snapshot();lastSignature=signature(initial);history.replaceState(initial,'',location.href)},0);
+/* v9.13.1: niezawodne Wstecz w Android PWA. */
+(function(){'use strict';
+const screens=['start','produkty','posilki','cele','plan','zakupy','dziennik','kalendarz','historia'];
+const modals=['eanScannerModal','offResultsModal','planDetailsModal','planModal','goalCalculatorModal','journalEntryCard','vesselModal','journalModal'];
+const $=id=>document.getElementById(id);let applying=false,ready=false,last='';
+function screen(){return screens.find(id=>$(id)&&!$(id).classList.contains('hide'))||'start'}
+function opened(){return modals.filter(id=>$(id)&&!$(id).classList.contains('hide'))}
+function snap(){return{dm:true,screen:screen(),modals:opened(),journal:{person:$('jperson')?.value||'',date:$('jdate')?.value||''},plan:{date:$('planDate')?.value||''},calendar:{month:$('dietMonth')?.value||''},shopping:{from:$('shoppingFrom')?.value||'',to:$('shoppingTo')?.value||''}}}
+function sig(s){return JSON.stringify(s)}
+function write(mode){if(!ready||applying)return;const s=snap(),x=sig(s);if(x===last)return;last=x;history[mode+'State'](s,'',location.href)}
+function restore(s){if(!s?.dm)return;applying=true;try{
+ if(s.journal){if($('jperson'))$('jperson').value=s.journal.person;if($('jdate'))$('jdate').value=s.journal.date}
+ if(s.plan?.date&&$('planDate'))$('planDate').value=s.plan.date;if(s.calendar?.month&&$('dietMonth'))$('dietMonth').value=s.calendar.month;
+ if(s.shopping){if($('shoppingFrom'))$('shoppingFrom').value=s.shopping.from;if($('shoppingTo'))$('shoppingTo').value=s.shopping.to}
+ screens.forEach(id=>$(id)?.classList.toggle('hide',id!==s.screen));modals.forEach(id=>$(id)?.classList.toggle('hide',!(s.modals||[]).includes(id)));
+ if(!s.modals?.includes('eanScannerModal')&&typeof window.stopEanScanner==='function')window.stopEanScanner();
+ ['renderJournal','renderPlan','renderGoals','renderShopping','renderDietCalendar'].forEach(fn=>{if(typeof window[fn]==='function')try{window[fn]()}catch(e){console.warn(fn,e)}});
+ last=sig(snap());
+ }finally{setTimeout(()=>applying=false,0)}}
+window.addEventListener('popstate',e=>restore(e.state));
+/* Klucz dla Android PWA: bazowy wpis + wartownik. Pierwsze Wstecz wraca do stanu aplikacji zamiast ją zamykać. */
+const base=snap();history.replaceState(base,'',location.href);history.pushState({...base,dmGuard:true},'',location.href);last=sig(base);ready=true;
+/* Podpinamy się pod właściwe kliknięcia nawigacyjne, nie tylko MutationObserver. */
+document.addEventListener('click',e=>{if(applying)return;const target=e.target.closest('button,a,[role="button"]');if(!target)return;const before=sig(snap());setTimeout(()=>{const after=sig(snap());if(after!==before){last=before;write('push')}},0)},true);
+const obs=new MutationObserver(()=>{if(!applying)requestAnimationFrame(()=>write('push'))});screens.concat(modals).forEach(id=>{const n=$(id);if(n)obs.observe(n,{attributes:true,attributeFilter:['class']})});
+['jperson','jdate','planDate','dietMonth','shoppingFrom','shoppingTo'].forEach(id=>$(id)?.addEventListener('change',()=>write('replace')));
 })();
